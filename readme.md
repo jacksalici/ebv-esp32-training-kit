@@ -16,8 +16,13 @@ _The checked sensors have been already implemented._
 
 #### Sensor PCB 1 (*NXP Semiconductors*)
 
+
+#### Sensor PCB 1 (*NXP Semiconductors*)
+
 - [ ] **`FXOS8700CQ`** – a 6-axis sensor with an integrated linear accelerometer and magnetometer.
-- [ ] **`PCT2075DP`** – a high-accuracy digital temperature sensor and thermal watchdog.
+- [x] **`SE95DP`** – a high-accuracy digital temperature sensor and thermal watchdog. ^[1]
+
+^[1]: In the original blog post this was a `PCT2075DP` temperature sensor, unclear which sensor is actual on board. A library for `PCT2075DP` has been tested and works pretty well. 
 
 #### Sensor PCB 2 (*Infineon*)
 
@@ -61,18 +66,19 @@ The sensors are addressable through the I2C bus. The following table shows the a
 | HS3001       | Humidity & temperature       | 0x44       |
 
 
+
 ## Software and libraries  
 
 The project has been developed using the [PlatformIO](https://platformio.org/) IDE. The librieries in the `EBVTrainingKit/lib` folder are developed by the respective authors.
 
 - `FXOS8700CQ` – [link](https://github.com/mlwarner/fxos8700cq-arduino)
-- `PCT2075DP` – [link]()
-- `DPS422` – [link]()
+- `PCT2075DP` – [link](https://github.com/jpliew/PCT2075) - GNU
+- `DPS422` – [link](https://github.com/Infineon/DPS422-Library-Arduino) - MIT Licence
 - `TLV493D` – [link]()
 - `LPS22HB` – [link](https://github.com/arduino-libraries/Arduino_LPS22HB) - LGPL-2.1 license 
 - `HTS221` – [link](https://github.com/arduino-libraries/Arduino_HTS221) - LGPL-2.1 license
 - `LSM303AGR` – [link]()
 - `HS3001` – [link](https://github.com/mcci-catena/MCCI-Catena-HS300x) - MIT License
 - `CCS811` – [link](https://github.com/sparkfun/SparkFun_CCS811_Arduino_Library) - MIT Licence
-- `ENS210` – [link]()
+- `ENS210` – [link](https://github.com/maarten-pennings/ENS210) - MIT Licence
 - `TSL2572` – [link]()

@@ -6,13 +6,14 @@
 #include <Arduino_HTS221.h>
 #include <Arduino_LPS22HB.h>
 #include <FXOS8700CQ.h>
+#include <PCT2075.h>
 
 
 
 
 CCS811 ccs811(0x5A);
 FXOS8700CQ fx0s8700cq = FXOS8700CQ(0x1D);
-
+PCT2075 pct2075 = PCT2075(0x48);
 using namespace McciCatenaHs300x;
 cHS300x gHs300x{Wire};
 
@@ -56,13 +57,16 @@ void setup()
 
   // FXOS8700CQ sensor initialization
   fx0s8700cq.init();
+
+  // PCT2075 sensor initialization
+  pct2075.begin();
 }
 
 void loop()
 {
   // CCS811 sensor
   Serial.print("CCS811 sensor | ");
-  
+
   if (ccs811.dataAvailable())
   {
     ccs811.readAlgorithmResults();
@@ -92,9 +96,9 @@ void loop()
 
   float temperature = HTS.readTemperature();
   float humidity = HTS.readHumidity();
-  Serial.print("Temperature = ");
+  Serial.print("Temperature: ");
   Serial.print(temperature);
-  Serial.print("°C - Humidity = ");
+  Serial.print("°C - Humidity: ");
   Serial.print(humidity);
   Serial.println("%");
 
@@ -102,17 +106,17 @@ void loop()
   Serial.print("LPS22HB sensor | ");
 
   float pressure = BARO.readPressure();
-  Serial.print("Pressure = ");
+  Serial.print("Pressure: ");
   Serial.print(pressure);
   Serial.print("kPa ");
 
   float temperature2 = BARO.readTemperature();
-  Serial.print(" - Temperature = ");
+  Serial.print(" - Temperature: ");
   Serial.print(temperature2);
   Serial.print("°C");
 
   float altitude = BARO.readAltitude();
-  Serial.print(" - Altitude = ");
+  Serial.print(" - Altitude: ");
   Serial.print(altitude);
   Serial.println("m");
 
@@ -121,21 +125,33 @@ void loop()
   fx0s8700cq.readAccelData();
   fx0s8700cq.readMagData();
 
-  Serial.print("Accellerometer ");
-  Serial.print("x: ");
+  Serial.print("Accelerometer: ");
   Serial.print((int)fx0s8700cq.accelData.x);
-  Serial.print(" y: ");
+  Serial.print(", ");
   Serial.print((int)fx0s8700cq.accelData.y);
-  Serial.print(" z: ");
+  Serial.print(", ");
   Serial.print((int)fx0s8700cq.accelData.z);
   
-  Serial.print(" - Magnetometer ");
-  Serial.print("x: ");
+  Serial.print(" - Magnetometer: ");
   Serial.print((int)fx0s8700cq.magData.x);
-  Serial.print(" y: ");
+  Serial.print(", ");
   Serial.print((int)fx0s8700cq.magData.y);
-  Serial.print(" z: ");
+  Serial.print(", ");
   Serial.println((int)fx0s8700cq.magData.z);
+
+  // PCT2075 sensor
+  Serial.print("PCT2075 sensor | ");
+
+  if (pct2075.isShutdown() == 0) {
+		float tempC = pct2075.getTempC();
+		Serial.print("Temperature: ");
+		Serial.print(tempC);
+		Serial.print("°C");
+	}
+	else {
+		pct2075.normal(); 
+	}
+
 
   Serial.println();
 
