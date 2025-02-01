@@ -10,34 +10,69 @@ This repository aims to provide a complete documentation of the kit, and to offe
 
 ## Sensors and PCBs
 
+### Description
+
 _The checked sensors have been already implemented._
 
-### Sensor PCB 1 (*NXP Semiconductors*)
+#### Sensor PCB 1 (*NXP Semiconductors*)
 
-- [ ] **FXOS8700CQ** – a 6-axis sensor with an integrated linear accelerometer and magnetometer.
-- [ ] **PCT2075DP** – a high-accuracy digital temperature sensor and thermal watchdog.
+- [ ] **`FXOS8700CQ`** – a 6-axis sensor with an integrated linear accelerometer and magnetometer.
+- [ ] **`PCT2075DP`** – a high-accuracy digital temperature sensor and thermal watchdog.
 
-### Sensor PCB 2 (*Infineon*)
+#### Sensor PCB 2 (*Infineon*)
 
-- [ ] **DPS422** – a digital XENSIV™ barometric pressure and temperature sensor for portable and IoT devices.
-- [ ] **TLV493D** – a 3D magnetic sensor with low power consumption.
+- [ ] **`DPS422`** – a digital XENSIV™ barometric pressure and temperature sensor for portable and IoT devices.
+- [ ] **`TLV493D`** – a 3D magnetic sensor with low power consumption.
 
-### Sensor PCB 3 (*STMicroelectronics*)
+#### Sensor PCB 3 (*STMicroelectronics*)
 
-- [ ] **LPS22HB** – an absolute digital output barometer with a pressure range from 260 to 1260 hPa.
-- [x] **HTS221** – a capacitive digital sensor for relative humidity and temperature.
-- [ ] **LSM303AGR** – a high-performance eCompass module: an ultra-low-power 3D accelerometer and a 3D magnetometer.
+- [x] **`LPS22HB`** – an absolute digital output barometer with a pressure range from 260 to 1260 hPa, with also temperature and altitude indication.
+- [x] **`HTS221`** – a capacitive digital sensor for relative humidity and temperature.
+- [ ] **`LSM303AGR`** – a high-performance eCompass module: an ultra-low-power 3D accelerometer and a 3D magnetometer.
 
-### Sensor PCB 4 (*Renesas*)
+#### Sensor PCB 4 (*Renesas*)
 
-- [x] **HS3001** – a high-performance relative humidity and temperature sensor.
+- [x] **`HS3001`** – a high-performance relative humidity and temperature sensor.
 
-### Sensor PCB 5 (*ams*)
+#### Sensor PCB 5 (*ams*)
 
-- [x] **CCS811** – an ultra-low-power digital gas sensor for indoor air quality monitoring.
-- [ ] **ENS210** – a highly accurate relative humidity and temperature sensor.
-- [ ] **TSL2572** – a light-to-digital converter.
+- [x] **`CCS811`** – an ultra-low-power digital gas sensor for indoor air quality monitoring.
+- [ ] **`ENS210`** – a highly accurate relative humidity and temperature sensor.
+- [ ] **`TSL2572`** – a light-to-digital converter.
+
+### Addresses
+
+The sensors are addressable through the I2C bus. The following table shows the addresses of the sensors on the PCBs.
+
+| Module Code  | Module Utility               | I2C Address|
+|--------------|------------------------------|------------|
+| LPS22HB      | Pressure sensor              | 0x5C       |
+| LSM303-ACC   | Accelerometer                | 0x19       |
+| LSM303-MAG   | Magnetometer                 | 0x1E       |
+| HTS221       | Humidity & temperature       | 0x5F       |
+| SE95DP       | Temperature sensor           | 0x48       |
+| FXOS8700CQ   | 6-axis motion sensor         | 0x1D       |
+| CCS811       | Air quality (TVOC, eCO2)     | 0x5A       |
+| ENS210       | Humidity & temperature       | 0x43       |
+| TSL2572      | Ambient light sensor         | 0x39       |
+| DPS422       | Pressure & temperature       | 0x76       |
+| TLV493D      | 3D magnetic sensor           | 0x5E       |
+| ATECC608A    | Crypto authentication        | 0x60       |
+| HS3001       | Humidity & temperature       | 0x44       |
+
 
 ## Software and libraries  
 
-The project has been developed using the [PlatformIO](https://platformio.org/) IDE.
+The project has been developed using the [PlatformIO](https://platformio.org/) IDE. The librieries in the `EBVTrainingKit/lib` folder are developed by the respective authors.
+
+- `FXOS8700CQ` – [link](https://github.com/mlwarner/fxos8700cq-arduino)
+- `PCT2075DP` – [link]()
+- `DPS422` – [link]()
+- `TLV493D` – [link]()
+- `LPS22HB` – [link](https://github.com/arduino-libraries/Arduino_LPS22HB) - LGPL-2.1 license 
+- `HTS221` – [link](https://github.com/arduino-libraries/Arduino_HTS221) - LGPL-2.1 license
+- `LSM303AGR` – [link]()
+- `HS3001` – [link](https://github.com/mcci-catena/MCCI-Catena-HS300x) - MIT License
+- `CCS811` – [link](https://github.com/sparkfun/SparkFun_CCS811_Arduino_Library) - MIT Licence
+- `ENS210` – [link]()
+- `TSL2572` – [link]()
