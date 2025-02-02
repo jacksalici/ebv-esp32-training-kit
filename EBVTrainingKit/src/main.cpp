@@ -9,7 +9,8 @@
 #include <PCT2075.h>
 #include <ens210.h>
 #include <Dps422.h>
-
+#include <LSM303AGR_ACC_Sensor.h>
+#include <LSM303AGR_MAG_Sensor.h>
 
 
 
@@ -20,7 +21,8 @@ using namespace McciCatenaHs300x;
 cHS300x gHs300x{Wire};
 ENS210 ens210;
 Dps422 DSP422 = Dps422();
-
+LSM303AGR_ACC_Sensor lsm303agr_acc(&Wire);
+LSM303AGR_MAG_Sensor lsm303agr_mag(&Wire);
 
 void setup()
 {
@@ -71,6 +73,14 @@ void setup()
 
   // DPS422 sensor initialization
   DSP422.begin(Wire, 0x76);
+
+  // LSM303AGR sensor initialization
+  lsm303agr_acc.begin();
+  lsm303agr_acc.Enable();
+  lsm303agr_acc.EnableTemperatureSensor();
+  lsm303agr_mag.begin();
+  lsm303agr_mag.Enable();
+
 }
 
 void loop()
@@ -204,6 +214,35 @@ void loop()
     Serial.print(pressure3);
     Serial.println(" P");
   }
+
+  // LSM303AGR sensor
+  Serial.print("LSM303AGR sensor | ");
+
+  int32_t accelerometer[3];
+  lsm303agr_acc.GetAxes(accelerometer);
+
+  float temperature4;
+  lsm303agr_acc.GetTemperature(&temperature4);
+
+  int32_t magnetometer[3];
+  lsm303agr_mag.GetAxes(magnetometer);
+
+  Serial.print("Acc[mg]: ");
+  Serial.print(accelerometer[0]);
+  Serial.print(" ");
+  Serial.print(accelerometer[1]);
+  Serial.print(" ");
+  Serial.print(accelerometer[2]);
+  Serial.print(" - Mag[mGauss]: ");
+  Serial.print(magnetometer[0]);
+  Serial.print(" ");
+  Serial.print(magnetometer[1]);
+  Serial.print(" ");
+  Serial.print(magnetometer[2]);
+  Serial.print(" - Temp[C]: ");
+  Serial.println(temperature4, 2);
+  
+
 
   Serial.println();
 

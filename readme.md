@@ -30,7 +30,7 @@ _The checked sensors have been already implemented._
 
 - [x] **`LPS22HB`** – an absolute digital output barometer with a pressure range from 260 to 1260 hPa, with also temperature and altitude indication.
 - [x] **`HTS221`** – a capacitive digital sensor for relative humidity and temperature.
-- [ ] **`LSM303AGR`** – a high-performance eCompass module: an ultra-low-power 3D accelerometer and a 3D magnetometer.
+- [x] **`LSM303AGR`** – a high-performance eCompass module: an ultra-low-power 3D accelerometer and a 3D magnetometer.
 
 #### PCB *Renesas*
 
@@ -68,14 +68,15 @@ The sensors are addressable through the I2C bus. The following table shows the a
 
 The project has been developed using the [PlatformIO](https://platformio.org/) IDE. The librieries in the `EBVTrainingKit/lib` folder are developed by the respective authors.
 
-- `FXOS8700CQ` – [link](https://github.com/mlwarner/fxos8700cq-arduino) – No licence available
+- `FXOS8700CQ` – [link](https://github.com/mlwarner/fxos8700cq-arduino) 
 - `PCT2075DP` – [link](https://github.com/jpliew/PCT2075) – GNU
 - `DPS422` – [link](https://github.com/Infineon/DPS422-Library-Arduino) – MIT Licence 
-- `TLV493D` – [link]()
+    - Avaiable both continuous and single shot mode
+- `TLV493D` – [link](https://github.com/Infineon/arduino-xensiv-3d-magnetic-sensor-tlx493d) – MIT Licence
 - `LPS22HB` – [link](https://github.com/arduino-libraries/Arduino_LPS22HB) – LGPL-2.1 license 
 - `HTS221` – [link](https://github.com/arduino-libraries/Arduino_HTS221) – LGPL-2.1 license
-- `LSM303AGR` – [link]()
+- `LSM303AGR` – [link](https://github.com/stm32duino/LSM303AGR) 
 - `HS3001` – [link](https://github.com/mcci-catena/MCCI-Catena-HS300x) – MIT License
 - `CCS811` – [link](https://github.com/sparkfun/SparkFun_CCS811_Arduino_Library) – MIT Licence
 - `ENS210` – [link](https://github.com/maarten-pennings/ENS210) - MIT Licence
-- `TSL2572` – [link]()
+- `TSL2572` – [link](https://github.com/TinyCircuits/TinyCircuits-TSL2572-library) – LGPL-3.0 license
