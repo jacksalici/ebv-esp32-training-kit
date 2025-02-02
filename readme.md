@@ -40,7 +40,7 @@ _The checked sensors have been already implemented._
 
 - [x] **`CCS811`** – an ultra-low-power digital gas sensor for indoor air quality monitoring.
 - [x] **`ENS210`** – a highly accurate relative humidity and temperature sensor.
-- [ ] **`TSL2572`** – a light-to-digital converter.
+- [x] **`TSL2572`** – a light-to-digital converter.
 
 ### Addresses
 
@@ -71,12 +71,14 @@ The project has been developed using the [PlatformIO](https://platformio.org/) I
 - `FXOS8700CQ` – [link](https://github.com/mlwarner/fxos8700cq-arduino) 
 - `PCT2075DP` – [link](https://github.com/jpliew/PCT2075) – GNU
 - `DPS422` – [link](https://github.com/Infineon/DPS422-Library-Arduino) – MIT Licence 
-    - Avaiable both continuous and single shot mode
+    - Avaiable both continuous and single shot mode, here implemented only the latter.
 - `TLV493D` – [link](https://github.com/Infineon/arduino-xensiv-3d-magnetic-sensor-tlx493d) – MIT Licence
 - `LPS22HB` – [link](https://github.com/arduino-libraries/Arduino_LPS22HB) – LGPL-2.1 license 
 - `HTS221` – [link](https://github.com/arduino-libraries/Arduino_HTS221) – LGPL-2.1 license
 - `LSM303AGR` – [link](https://github.com/stm32duino/LSM303AGR) 
 - `HS3001` – [link](https://github.com/mcci-catena/MCCI-Catena-HS300x) – MIT License
+  - Adding the Arduino library [in the header file](https://github.com/jacksalici/ebv-esp32-training-kit/blob/56873641cd3b97781fdd2c818a971b706acd858c/EBVTrainingKit/lib/MCCI-Catena-HS300x/src/Catena-HS300x.h#L21) was needed in order to avoid a compilation error
 - `CCS811` – [link](https://github.com/sparkfun/SparkFun_CCS811_Arduino_Library) – MIT Licence
 - `ENS210` – [link](https://github.com/maarten-pennings/ENS210) - MIT Licence
 - `TSL2572` – [link](https://github.com/TinyCircuits/TinyCircuits-TSL2572-library) – LGPL-3.0 license
+  - casting at line ... was needed in order to avoid a compilation error

@@ -11,7 +11,7 @@
 #include <Dps422.h>
 #include <LSM303AGR_ACC_Sensor.h>
 #include <LSM303AGR_MAG_Sensor.h>
-
+#include <TSL2572.h> 
 
 
 CCS811 ccs811(0x5A);
@@ -23,6 +23,9 @@ ENS210 ens210;
 Dps422 DSP422 = Dps422();
 LSM303AGR_ACC_Sensor lsm303agr_acc(&Wire);
 LSM303AGR_MAG_Sensor lsm303agr_mag(&Wire);
+TSL2572 tsl2572;
+int gain_val = 0;
+
 
 void setup()
 {
@@ -80,6 +83,9 @@ void setup()
   lsm303agr_acc.EnableTemperatureSensor();
   lsm303agr_mag.begin();
   lsm303agr_mag.Enable();
+
+  // TSL2572 sensor initialization
+  tsl2572.init(GAIN_16X);
 
 }
 
@@ -241,6 +247,13 @@ void loop()
   Serial.print(magnetometer[2]);
   Serial.print(" - Temp[C]: ");
   Serial.println(temperature4, 2);
+
+  // TSL2572 sensor
+  Serial.print("TSL2572 sensor | ");
+  float AmbientLightLux = tsl2572.readAmbientLight();
+  Serial.print("Lux: ");
+  Serial.print(AmbientLightLux);
+
   
 
 
