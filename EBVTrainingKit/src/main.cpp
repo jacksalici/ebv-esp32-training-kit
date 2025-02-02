@@ -7,6 +7,8 @@
 #include <Arduino_LPS22HB.h>
 #include <FXOS8700CQ.h>
 #include <PCT2075.h>
+#include <ens210.h>
+#include <Dps422.h>
 
 
 
@@ -16,6 +18,9 @@ FXOS8700CQ fx0s8700cq = FXOS8700CQ(0x1D);
 PCT2075 pct2075 = PCT2075(0x48);
 using namespace McciCatenaHs300x;
 cHS300x gHs300x{Wire};
+ENS210 ens210;
+Dps422 DSP422 = Dps422();
+
 
 void setup()
 {
@@ -60,6 +65,12 @@ void setup()
 
   // PCT2075 sensor initialization
   pct2075.begin();
+
+  // ENS210 sensor initialization
+  ens210.begin();
+
+  // DPS422 sensor initialization
+  DSP422.begin(Wire, 0x76);
 }
 
 void loop()
@@ -147,11 +158,52 @@ void loop()
 		Serial.print("Temperature: ");
 		Serial.print(tempC);
 		Serial.print("°C");
+    Serial.print(" - T. Hyst: ");
+    Serial.print(pct2075.getThyst());
+    Serial.print("°C");
+    Serial.println();
 	}
 	else {
 		pct2075.normal(); 
 	}
 
+  // ENS210 sensor
+  Serial.print("ENS210 sensor | ");
+
+  int t_data, t_status, h_data, h_status;
+  ens210.measure(&t_data, &t_status, &h_data, &h_status );
+
+  Serial.print( ens210.toCelsius(t_data, 10)/10.0, 1 );
+  Serial.print("°C, ");
+  Serial.print( ens210.toPercentageH(h_data, 1) );
+  Serial.println(" %RH");
+
+
+  // DPS422 sensor
+  Serial.print("DPS422 sensor | ");
+
+  float temperature3;
+  float pressure3;
+  int16_t oversampling = 7;
+  int16_t ret;
+
+  ret = DSP422.measureTempOnce(temperature3, oversampling);
+
+  if (ret == 0)
+  {
+    Serial.print("Temperature: ");
+    Serial.print(temperature3);
+    Serial.print(" °C - ");
+  }
+
+  ret = DSP422.measurePressureOnce(pressure3, oversampling);
+
+  if (ret == 0)
+  {
+    Serial.print("Pressure: ");
+    Serial.print(pressure3);
+    Serial.println(" P");
+  }
 
   Serial.println();
 
