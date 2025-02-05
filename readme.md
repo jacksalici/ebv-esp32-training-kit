@@ -17,9 +17,9 @@ _The checked sensors have been already implemented._
 #### PCB *NXP Semiconductors*
 
 - [x] **`FXOS8700CQ`** – a 6-axis sensor with an integrated linear accelerometer and magnetometer.
-- [x] **`SE95DP`** – a high-accuracy digital temperature sensor and thermal watchdog. ^[1]
+- [x] **`SE95DP`** – a high-accuracy digital temperature sensor and thermal watchdog. [^1]
 
-^[1]: In the original blog post this was a `PCT2075DP` temperature sensor, unclear which sensor is actual on board. A library for `PCT2075DP` has been tested and works pretty well. 
+[^1]: In the original blog post this was a `PCT2075DP` temperature sensor, unclear which sensor is actual on board. A library for `PCT2075DP` has been tested and works pretty well. 
 
 #### PCB *Infineon*
 
